@@ -60,7 +60,7 @@ html {
 
 body {
   margin: 0;
-  background: orange;(--bg);
+  background: var(--bg);
   color: var(--text);
   font-family: var(--font);
   font-size: 16px;
