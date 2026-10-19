@@ -9,12 +9,24 @@ const express = require("express");
 const app = express();
 const PUBLIC_DIR = path.join(__dirname, "public");
 
+app.use(express.json());
+
 // 정적 파일 서빙: index.html, about.html, contact.html, assets/ 등
 app.use(
   express.static(PUBLIC_DIR, {
     extensions: ["html"], // "/about" 요청 시 about.html도 찾아줌
   })
 );
+
+app.put("/api/example/:id", (req, res) => {
+  const { id } = req.params;
+  const updateData = req.body;
+
+  res.status(200).json({
+    message: `ID ${id} 데이터가 성공적으로 수정되었습니다.`,
+    data: updateData,
+  });
+});
 
 // 404: 등록된 라우트/정적 파일 어디에도 해당하지 않을 때
 app.use((req, res) => {
