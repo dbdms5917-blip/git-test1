@@ -28,6 +28,19 @@ app.put("/api/example/:id", (req, res) => {
   });
 });
 
+// =========================================================
+// 💡 DELETE 라우트 추가 (404 에러 핸들러보다 위에 있어야 합니다!)
+// =========================================================
+app.delete("/api/example/:id", (req, res) => {
+  const { id } = req.params;
+
+  // 여기에 데이터 삭제 로직 작성 (예: DB 삭제 등)
+
+  res.status(200).json({
+    message: `ID ${id} 데이터가 성공적으로 삭제되었습니다.`,
+  });
+});
+
 // 404: 등록된 라우트/정적 파일 어디에도 해당하지 않을 때
 app.use((req, res) => {
   res.status(404).type("text/plain").send("404 Not Found: " + req.originalUrl);
